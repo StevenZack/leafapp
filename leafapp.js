@@ -1,3 +1,21 @@
+var vs = document.querySelectorAll('template');
+for (var i = 0; i < vs.length; i++) {
+    if (!vs[i].innerHTML) continue;
+    (function (v) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState !== 4) return;
+            if (xhr.status !== 200) {
+                v.outerHTML = xhr.responseText
+                return
+            }
+            v.outerHTML = xhr.responseText;
+        }
+        console.log(v.innerHTML);
+        xhr.open('GET', v.innerHTML);
+        xhr.send();
+    })(vs[i])
+}
 function encodeInputsUrlEncoded(inputs) {
     var body = '';
     for (var j = 0; j < inputs.length; j++) {
@@ -38,13 +56,19 @@ for (var i = 0; i < vs.length; i++) {
 }
 var vs = document.querySelectorAll('a');
 for (var i = 0; i < vs.length; i++) {
-    var v = vs[i];
-    v.onclick = function (e) {
-        var self = e.currentTarget;
-        setTimeout(() => {
-            self.outerHTML = '<progress style="width: 40px;"/>'
-        }, 50);
-    }
+    (function (v, i) {
+        v.onclick = function (e) {
+            var self = e.currentTarget;
+            var before = self.outerHTML;
+            var id='__pro_'+i;
+            setTimeout(() => {
+                self.outerHTML = '<progress style="width: 40px;" id="' + id + '"/>'
+            }, 5);
+            setTimeout(() => {
+                document.getElementById(id).outerHTML = before;
+            }, 5000);
+        }
+    })(vs[i], i)
 }
 var vs = document.querySelectorAll('form[method]');
 for (var i = 0; i < vs.length; i++) {
@@ -102,23 +126,4 @@ for (var i = 0; i < vs.length; i++) {
 
         xhr.send(body);
     }
-}
-
-var vs = document.querySelectorAll('template');
-for (var i = 0; i < vs.length; i++) {
-    if (!vs[i].innerHTML) continue;
-    (function (v) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState !== 4) return;
-            if (xhr.status !== 200) {
-                v.outerHTML = xhr.responseText
-                return
-            }
-            v.outerHTML = xhr.responseText;
-        }
-        console.log(v.innerHTML);
-        xhr.open('GET', v.innerHTML);
-        xhr.send();
-    })(vs[i])
 }
