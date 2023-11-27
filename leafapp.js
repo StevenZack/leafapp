@@ -1,6 +1,6 @@
-var vs = document.querySelectorAll('template');
+var vs = document.querySelectorAll('[page]');
 for (var i = 0; i < vs.length; i++) {
-    if (!vs[i].innerHTML) continue;
+    if (!vs[i].getAttribute('page')) continue;
     (function (v) {
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function () {
@@ -11,8 +11,7 @@ for (var i = 0; i < vs.length; i++) {
             }
             v.outerHTML = xhr.responseText;
         }
-        console.log(v.innerHTML);
-        xhr.open('GET', v.innerHTML);
+        xhr.open('GET', v.getAttribute('page'));
         xhr.send();
     })(vs[i])
 }
