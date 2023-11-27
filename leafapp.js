@@ -59,7 +59,7 @@ for (var i = 0; i < vs.length; i++) {
         v.onclick = function (e) {
             var self = e.currentTarget;
             var before = self.outerHTML;
-            var id='__pro_'+i;
+            var id = '__pro_' + i;
             setTimeout(() => {
                 self.outerHTML = '<progress style="width: 40px;" id="' + id + '"/>'
             }, 5);
@@ -88,6 +88,10 @@ for (var i = 0; i < vs.length; i++) {
                 alert(xhr.responseText)
                 self.disabled = false;
                 self.innerHTML = before;
+                return
+            }
+            if (xhr.responseText) {
+                location.href = xhr.responseText
                 return
             }
             location.href = location.href;
