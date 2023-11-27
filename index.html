@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeafApp|The Minimalist Way of Building Web App</title>
+    <link rel="stylesheet" href="leafapp.css">
+    <meta name="keywords" content="go,htmx,js,css,minimalist,lightweight">
+    <script defer src="leafapp.js"></script>
+    <script>
+        function doCopy(self) {
+            var before = self.innerText;
+            self.disabled = true;
+            self.innerText = 'OK';
+            var textarea = document.getElementById('install-code');
+            textarea.disabled = false;
+            textarea.focus();
+            textarea.select();
+            document.execCommand('copy')
+            textarea.disabled = true;
+            setTimeout(() => {
+                self.innerText = before;
+                self.disabled = false;
+            }, 1000);
+        }
+    </script>
+</head>
+
+<body>
+    <template>nav.html</template>
+    <div class="c">
+        <div class="maxwmd w r">
+            <div class="cs g">
+                <h1>LeafApp</h1>
+                <h3>
+                    The Minimalist Way of Building Web App
+                </h3>
+                <p>
+                    <i>
+                        <a href="https://go.dev">Go</a> + <a href="leafapp.css">leafapp.css</a> + <a href="leafapp.js">leafapp.js</a>
+                    </i>
+                </p>
+            </div>
+            <fieldset class="p m">
+                <legend>Install via CDN
+                    <button onclick="doCopy(this)">COPY</button>
+                </legend>
+                <textarea rows="4" cols="38" id="install-code" disabled>&lt;link rel="stylesheet" href="https://stevenzack.github.io/leafapp/leafapp.css"&gt;
+&lt;script defer src="https://stevenzack.github.io/leafapp/leafapp.js"&gt;&lt;/script&gt;</textarea>
+            </fieldset>
+        </div>
+    </div>
+</body>
+
+</html>
