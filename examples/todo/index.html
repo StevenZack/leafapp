@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+    <link rel="stylesheet" href="https://stevenzack.github.io/leafapp/leafapp.css">
+    <script defer src="https://stevenzack.github.io/leafapp/leafapp.js"></script>
+</head>
+<body>
+    <form action="/" method="post">
+        <input type="text" name="name">
+        <input type="submit" value="submit">
+    </form>
+    <hr>
+    <table border="1">
+        {{range .}}
+        <tr>
+            <td>
+                {{.Name}}
+            </td>
+            <td>
+                <details>
+                    <summary>Edit</summary>
+                    <form action="/" method="patch">
+                        <input type="hidden" name="id" value="{{.Id}}">
+                        <input type="text" name="name" value="{{.Name}}" placeholder="name" size="6"><br>
+                        <input type="submit" value="edit">
+                    </form>
+                </details>
+            </td>
+            <td>
+                <button href-delete="/?id={{.Id}}">Delete</button>
+            </td>
+        </tr>
+        {{end}}
+    </table>
+</body>
+</html>
