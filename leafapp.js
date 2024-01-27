@@ -31,6 +31,11 @@ function encodeInputsUrlEncoded(inputs) {
             }
             continue;
         }
+        if (inputs[j].type==='checkbox'){
+            if(!inputs[j].checked){
+                continue;
+            }
+        }
         if (body) {
             body += '&';
         }
