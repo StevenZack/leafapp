@@ -105,7 +105,7 @@ for (var i = 0; i < vs.length; i++) {
         var body = null;
         var url = self.getAttribute('action');
 
-        var inputs = self.querySelectorAll('input[name]');
+        var inputs = self.querySelectorAll('[name]');
         switch (enctype) {
             case 'application/x-www-form-urlencoded':
                 body = encodeInputsUrlEncoded(inputs);
