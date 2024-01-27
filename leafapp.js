@@ -18,7 +18,20 @@ for (var i = 0; i < vs.length; i++) {
 function encodeInputsUrlEncoded(inputs) {
     var body = '';
     for (var j = 0; j < inputs.length; j++) {
-        if (j > 0) {
+        if (inputs[j].multiple) {
+            var children = inputs[j].children;
+            for (var i = 0; i < children.length; i++) {
+                var v = children[i];
+                if (v.selected) {
+                    if (body) {
+                        body += '&';
+                    }
+                    body += inputs[j].getAttribute('name') + '=' + encodeURIComponent(v.value);
+                }
+            }
+            continue;
+        }
+        if (body) {
             body += '&';
         }
         body += inputs[j].getAttribute('name') + '=' + encodeURIComponent(inputs[j].value);
