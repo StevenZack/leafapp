@@ -71,22 +71,7 @@ for (var i = 0; i < vs.length; i++) {
         }
     }
 }
-var vs = document.querySelectorAll('a');
-for (var i = 0; i < vs.length; i++) {
-    (function (v, i) {
-        v.onclick = function (e) {
-            var self = e.currentTarget;
-            var before = self.outerHTML;
-            var id = '__pro_' + i;
-            setTimeout(() => {
-                self.outerHTML = '<progress style="width: 40px;" id="' + id + '"/>'
-            }, 5);
-            setTimeout(() => {
-                document.getElementById(id).outerHTML = before;
-            }, 5000);
-        }
-    })(vs[i], i)
-}
+
 var vs = document.querySelectorAll('form[method]');
 for (var i = 0; i < vs.length; i++) {
     var v = vs[i];
